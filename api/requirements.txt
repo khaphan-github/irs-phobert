@@ -4,3 +4,6 @@ pydantic
 aiofiles
 qdrant_client
 underthesea
+sentence_transformers
+transformers
+torch
