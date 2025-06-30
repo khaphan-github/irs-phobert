@@ -5,10 +5,3 @@ services:
     buildCommand: cd frontend/irs-frontend && npm install && npm run build
     staticPublishPath: frontend/irs-frontend/www
     branch: develop
-
-  - type: web
-    name: irs-phobert-backend
-    buildCommand: cd api && pip install -r requirements.txt
-    startCommand: python3 main.py
-    branch: develop
-    env: python
