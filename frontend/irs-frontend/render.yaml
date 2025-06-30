@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: ionic-frontend
+    env: static
+    buildCommand: npm install && ionic build
+    staticPublishPath: www
