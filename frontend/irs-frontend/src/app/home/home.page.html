@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="ion-text-center">🔍 Tìm kiếm PhoBERT AI</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="dark-theme">
+  <div class="search-container">
+    <ion-searchbar
+      [(ngModel)]="query"
+      placeholder="Nhập từ khóa bạn muốn tìm..."
+      (keyup.enter)="search()"
+      color="dark"
+      animated="true"
+      mode="ios"
+    ></ion-searchbar>
+
+    <ion-button expand="block" color="tertiary" shape="round" (click)="search()">
+      🚀 Tìm kiếm ngay
+    </ion-button>
+
+    <div *ngIf="results.length > 0" class="results-section">
+      <ion-list lines="none">
+        <ion-item *ngFor="let doc of results" class="result-card">
+          <ion-label>
+            <h2 class="result-title">{{ doc.title }}</h2>
+            <p class="result-snippet">{{ doc.content }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="showNoResult" class="no-result">
+      <ion-icon name="sad-outline" size="large"></ion-icon>
+      <p>Không tìm thấy kết quả nào.</p>
+    </div>
+  </div>
+</ion-content>
