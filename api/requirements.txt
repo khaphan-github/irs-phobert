@@ -3,3 +3,4 @@ uvicorn
 pydantic
 aiofiles
 qdrant_client
+underthesea
