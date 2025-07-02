@@ -6,19 +6,15 @@
 
 <ion-content [fullscreen]="true" class="dark-theme">
   <div class="search-container">
-    <ion-searchbar
-      [(ngModel)]="query"
-      placeholder="Nhập từ khóa bạn muốn tìm..."
-      (keyup.enter)="search()"
-      color="dark"
-      animated="true"
-      mode="ios"
-    ></ion-searchbar>
+    <ion-searchbar [(ngModel)]="query" placeholder="Nhập từ khóa bạn muốn tìm..." (keyup.enter)="search()" color="dark"
+      animated="true" mode="ios"></ion-searchbar>
 
     <ion-button expand="block" color="tertiary" shape="round" (click)="search()">
       🚀 Tìm kiếm ngay
     </ion-button>
-
+    <div *ngIf="isLoading" class="spinner-wrapper ion-text-center">
+      <ion-spinner name="dots" color="tertiary"></ion-spinner>
+    </div>
     <div *ngIf="results.length > 0" class="results-section">
       <ion-list lines="none">
         <ion-item *ngFor="let doc of results" class="result-card">
