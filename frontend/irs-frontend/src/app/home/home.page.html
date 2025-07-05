@@ -1,26 +1,33 @@
 <ion-header>
-  <ion-toolbar color="dark">
-    <ion-title class="ion-text-center">🔍 Tìm kiếm PhoBERT AI</ion-title>
+  <ion-toolbar color="light">
+    <ion-title class="ion-text-center">🔍 Tìm kiếm với PhoBERT AI</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="dark-theme">
+<ion-content [fullscreen]="true" class="cute-theme">
   <div class="search-container">
-    <ion-searchbar [(ngModel)]="query" placeholder="Nhập từ khóa bạn muốn tìm..." (keyup.enter)="search()" color="dark"
-      animated="true" mode="ios"></ion-searchbar>
+    <ion-searchbar
+      [(ngModel)]="query"
+      placeholder="Nhập điều bạn đang muốn tại đây... ✨"
+      (keyup.enter)="search()"
+      color="light"
+      animated="true"
+      mode="ios">
+    </ion-searchbar>
 
-    <ion-button expand="block" color="tertiary" shape="round" (click)="search()">
-      🚀 Tìm kiếm ngay
+    <ion-button expand="block" color="warning" shape="round" (click)="search()">
+      🌈 Khám phá ngay
     </ion-button>
+
     <div *ngIf="isLoading" class="spinner-wrapper ion-text-center">
-      <ion-spinner name="dots" color="tertiary"></ion-spinner>
+      <ion-spinner name="bubbles" color="warning"></ion-spinner>
     </div>
+
     <div *ngIf="results.length > 0" class="results-section">
       <ion-list lines="none">
-        <ion-item *ngFor="let doc of results" class="result-card" lines="none" button detail="false"
-          (click)="openUrl(doc.url)">
+        <ion-item *ngFor="let doc of results" class="result-card" lines="none" button detail="false" (click)="openUrl(doc.url)">
           <ion-label>
-            <p class="result-source">{{ doc.source }} • {{ doc.time }}</p>
+            <p class="result-source">📚 {{ doc.source }} • {{ doc.time }}</p>
             <h2 class="result-title">{{ doc.title }}</h2>
             <p class="result-snippet">{{ doc.snippet }}</p>
           </ion-label>
@@ -29,8 +36,8 @@
     </div>
 
     <div *ngIf="showNoResult" class="no-result">
-      <ion-icon name="sad-outline" size="large"></ion-icon>
-      <p>Không tìm thấy kết quả nào.</p>
+      <ion-icon name="sparkles-outline" size="large"></ion-icon>
+      <p>Oops... không tìm thấy kết quả 🥲</p>
     </div>
   </div>
 </ion-content>
