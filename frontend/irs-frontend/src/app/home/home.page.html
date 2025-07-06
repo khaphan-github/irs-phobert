@@ -15,9 +15,14 @@
       mode="ios">
     </ion-searchbar>
 
-    <ion-button expand="block" color="warning" shape="round" (click)="search()">
-      🌈 Khám phá ngay
-    </ion-button>
+    <div class="recent-section">
+      <h3 class="recent-title">📌 Tìm kiếm gần đây</h3>
+      <ion-list lines="none">
+        <ion-item *ngFor="let term of recentSearches" detail="false">
+          <ion-label>{{ term }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
 
     <div *ngIf="isLoading" class="spinner-wrapper ion-text-center">
       <ion-spinner name="bubbles" color="warning"></ion-spinner>

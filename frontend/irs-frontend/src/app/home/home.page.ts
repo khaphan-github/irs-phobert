@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchService } from './search.service';
 
+
 interface SearchResult {
   title: string;
   snippet: string;
@@ -29,11 +30,16 @@ interface SearchResult {
 export class HomePage {
   query = '';
   results: SearchResult[] = [];
-
+  showSearchModal = false;
   showNoResult = false;
   isLoading = false;
+  recentSearches: string[] = [];
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService) { }
+  ngOnInit() {
+    const saved = localStorage.getItem('recentSearches');
+    this.recentSearches = saved ? JSON.parse(saved) : [];
+  }
 
   search() {
     const keyword = this.query.trim();
@@ -42,6 +48,8 @@ export class HomePage {
       this.showNoResult = true;
       return;
     }
+    this.recentSearches = [keyword, ...this.recentSearches.filter(k => k !== keyword)].slice(0, 10);
+    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
 
     this.isLoading = true;
 
@@ -83,5 +91,13 @@ export class HomePage {
 
   openUrl(url: string) {
     window.open(url, '_blank');
+  }
+
+  presentSearchModal() {
+    this.showSearchModal = true;
+  }
+
+  dismissModal() {
+    this.showSearchModal = false;
   }
 }
