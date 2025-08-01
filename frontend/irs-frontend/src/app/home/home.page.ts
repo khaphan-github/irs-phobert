@@ -100,4 +100,10 @@ export class HomePage {
   dismissModal() {
     this.showSearchModal = false;
   }
+
+  onRecentSearch(term: string) {
+    this.query = term;
+    this.results = []
+    this.search();
+  }
 }
