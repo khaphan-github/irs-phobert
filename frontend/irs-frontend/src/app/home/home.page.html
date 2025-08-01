@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title class="ion-text-center">🔍 Tìm kiếm với PhoBERT AI</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="cute-theme">
+  <div class="search-container">
+    <ion-searchbar
+      [(ngModel)]="query"
+      placeholder="Nhập điều bạn đang muốn tại đây... ✨"
+      (keyup.enter)="search()"
+      color="light"
+      animated="true"
+      mode="ios">
+    </ion-searchbar>
+
+    <div class="recent-section">
+      <h3 class="recent-title">📌 Tìm kiếm gần đây</h3>
+      <ion-list lines="none">
+        <ion-item *ngFor="let term of recentSearches" detail="false">
+          <ion-label>{{ term }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="isLoading" class="spinner-wrapper ion-text-center">
+      <ion-spinner name="bubbles" color="warning"></ion-spinner>
+    </div>
+
+    <div *ngIf="results.length > 0" class="results-section">
+      <ion-list lines="none">
+        <ion-item *ngFor="let doc of results" class="result-card" lines="none" button detail="false" (click)="openUrl(doc.url)">
+          <ion-label>
+            <p class="result-source">📚 {{ doc.source }} • {{ doc.time }}</p>
+            <h2 class="result-title">{{ doc.title }}</h2>
+            <p class="result-snippet">{{ doc.snippet }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="showNoResult" class="no-result">
+      <ion-icon name="sparkles-outline" size="large"></ion-icon>
+      <p>Oops... không tìm thấy kết quả 🥲</p>
+    </div>
+  </div>
+</ion-content>
