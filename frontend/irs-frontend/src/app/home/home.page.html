@@ -25,7 +25,7 @@
         <ion-list lines="">
           <ion-item *ngFor="let doc of results" class="result-card" lines="none" button detail="false" (click)="openUrl(doc.url)">
             <ion-label>
-              <p class="result-source">📚 {{ doc.source }} • {{ doc.time }}</p>
+              <p class="result-source">📚 {{ doc.source }} • {{ doc.time }}  •  {{ doc.score }}</p>
               <h2 class="result-title">{{ doc.title }}</h2>
               <p class="result-snippet">{{ doc.snippet }}</p>
             </ion-label>
