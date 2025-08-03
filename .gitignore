@@ -1,3 +1,4 @@
 venv/*
 
 /notebook/model/*
+/qdrant_data/*

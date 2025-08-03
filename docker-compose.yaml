@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant_agent_retrival
+    ports:
+      - "6333:6333"
+    environment:
+      - QDRANT__SERVICE__API_KEY=vtdbC91ncKDXznWX5ZIOVPy3PMQ9rIJ4iwUBoMHrdJ3OvXNhHJcHfS23vfpzd1g9RKYTEyKjcCBHSOBLm5291tCVsrLxmgF1lvpVluyZMQBLiWGmhRe3pLrTAWmD1G1L
+    volumes:
+      - ./qdrant_data:/qdrant/storage
+
+volumes:
+  qdrant_data:

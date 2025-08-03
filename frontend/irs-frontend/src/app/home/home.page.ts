@@ -12,6 +12,7 @@ interface SearchResult {
   url: string;
   source: string;
   time: string;
+  score: any
 }
 
 @Component({
@@ -69,7 +70,8 @@ export class HomePage {
           snippet: this.generateSnippet(doc.text || doc.content || ''),
           url: doc.url || '#',
           source: doc.source || 'Không rõ nguồn',
-          time: new Date(doc.publish_time || doc.updatetime).toLocaleString('vi-VN'),
+          score: doc.score || 0,
+          time: new Date(doc.pubxlish_time || doc.updatetime).toLocaleString('vi-VN'),
         }));
 
         this.showNoResult = false;
@@ -99,5 +101,11 @@ export class HomePage {
 
   dismissModal() {
     this.showSearchModal = false;
+  }
+
+  onRecentSearch(term: string) {
+    this.query = term;
+    this.results = []
+    this.search();
   }
 }
