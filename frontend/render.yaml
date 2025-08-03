@@ -1,0 +1,7 @@
+services:
+  - type: static
+    name: irs-phobert-frontend
+    env: node
+    buildCommand: cd frontend/irs-frontend && npm install && npm run build
+    staticPublishPath: frontend/irs-frontend/www
+    branch: develop
